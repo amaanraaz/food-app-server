@@ -8,12 +8,13 @@ app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 app.get('/api/swiggy', async (req, res) => {
+    const {lat,lng,offset} = req.query;
   try {
     const response = await axios.get('https://www.swiggy.com/dapi/restaurants/list/v5', {
       params: {
-        lat: 28.5355161,
-        lng: 77.3910265,
-        offset: 0,
+        lat: lat,
+        lng: lng,
+        offset: offset,
         'is-seo-homepage-enabled': true,
         page_type: 'DESKTOP_WEB_LISTING'
       },
